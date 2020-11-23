@@ -1,8 +1,5 @@
 package com.titanic.data.analisys.app.utils;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public final class CsvUtils {
 	
 	private static final Character DOUBLE_QUOTE = '"';

@@ -18,10 +18,10 @@ import reactor.core.publisher.FluxSink;
  * @author jcantero
  *
  */
-public class QueueSimulator {
+public class SourceSimulator {
 
 	
-	private static final Logger log = LoggerFactory.getLogger(QueueSimulator.class);
+	private static final Logger log = LoggerFactory.getLogger(SourceSimulator.class);
 	
 	private final List<String> lines;
 	
@@ -32,7 +32,7 @@ public class QueueSimulator {
 	 * @throws IOException
 	 * 			File not exist
 	 */
-	public QueueSimulator(File file) {
+	public SourceSimulator(File file) {
 		lines = readFiles(file);
 	}
 	
@@ -71,7 +71,7 @@ public class QueueSimulator {
 						try {
 							Thread.sleep(ThreadLocalRandom.current().nextLong(50));
 						} catch (InterruptedException e) {
-							log.error("Error try sleep the thread", e);
+							log.error("Error trying sleep the thread", e);
 						}
 						
 						sink.next(s);

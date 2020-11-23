@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.titanic.data.analisys.app.entities.Passenger;
 import com.titanic.data.analisys.app.entities.factory.PassengerFactory;
-import com.titanic.data.analisys.app.simulators.QueueSimulator;
+import com.titanic.data.analisys.app.simulators.SourceSimulator;
 import com.titanic.data.analisys.app.statistics.PassengersSorter;
 import com.titanic.data.analisys.app.statistics.PassengersGroup;
 import com.titanic.data.analisys.app.statistics.PassengersGroups;
@@ -39,7 +39,7 @@ public class Runner implements CommandLineRunner {
 		 /**
 		  * Queue simulator	
 		  */
-		 QueueSimulator simulator = new QueueSimulator(resourceFile.getFile());
+		 SourceSimulator simulator = new SourceSimulator(resourceFile.getFile());
 		 
 		 Flux<PassengersGroup> classification =
 				 Flux.create(sink -> simulator.emitTo(sink))
@@ -58,6 +58,7 @@ public class Runner implements CommandLineRunner {
 				 		}
 				 		return Flux.fromIterable(counts);
 				 	})
+				 	.log()
 				 	.doOnNext(group -> group.addStatisticValue(passengers -> {
 				 		LongSummaryStatistics survivors = 
 			 					passengers
@@ -66,7 +67,8 @@ public class Runner implements CommandLineRunner {
 			 						.collect(Collectors.summarizingLong(Passenger::getSurvived));
 				 		
 				 		return new PropertyBean("relativyFrequency", Double.valueOf(survivors.getSum()) / passengers.size());
-				 	}));	 	
+				 	}))
+				 	.log();	 	
 		 
 		 
 		 List<PassengersGroup> passengersCounts = new ArrayList<>();

@@ -13,17 +13,17 @@ import com.titanic.data.analisys.app.entities.Passenger;
  * @author jcantero
  *
  */
-public class PassengerFactory {
+public final class PassengerFactory {
 
 	/**
-	 * Constant "felame" as it appears in the file CSV
+	 * Constant "female" as it appears in the file CSV
 	 */
 	private final static String FAMELE = "female";
 	
 	/**
 	 * Map of {@code PassengerSupplier} for create new {@code Passenger}
 	 * The key of the map is the kind of gender
-	 * The value is a suppiler for build the object {@code Passenger} 
+	 * The value is a supplier for build the object {@code Passenger} 
 	 */
 	private final static Map<Gender, PassengerSupplier<String[], Passenger>> map = new HashMap<>();
 	
@@ -35,6 +35,12 @@ public class PassengerFactory {
 		map.put(
 				Gender.MALE, 
 				line -> new MalePassenger(Integer.valueOf(line[0]), Short.valueOf(line[1]), Short.valueOf(line[2])));
+	}
+	
+	/**
+	 * Hide constructor
+	 */
+	private PassengerFactory() {
 	}
 	
 	/**
