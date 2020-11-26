@@ -18,7 +18,7 @@ public final class PassengerFactory {
 	/**
 	 * Constant "female" as it appears in the file CSV
 	 */
-	private final static String FAMELE = "female";
+	private final static String FEMALE = "female";
 	
 	/**
 	 * Map of {@code PassengerSupplier} for create new {@code Passenger}
@@ -51,7 +51,7 @@ public final class PassengerFactory {
 	 * 		{@code Passenger} with its data populated
 	 */
 	public static Passenger build(String[] line) {		
-		PassengerSupplier<String[], Passenger> supplier = FAMELE.equals(line[4]) ? map.get(Gender.FEMALE) : map.get(Gender.MALE);
+		PassengerSupplier<String[], Passenger> supplier = FEMALE.equals(line[4]) ? map.get(Gender.FEMALE) : map.get(Gender.MALE);
 		return supplier.get(line);
 	}
 	

@@ -30,7 +30,7 @@ public final class PrinterFormats {
 				table[0][2] = "Second class";
 				table[0][3] = "Third class";
 				
-				table[1][0] = "FAMELE";
+				table[1][0] = "FEMALE";
 				table[2][0] = "MALE";
 				
 				List<PassengersGroup> sorted =
@@ -96,7 +96,7 @@ public final class PrinterFormats {
 					return ln + templn;
 				}, (a, b) -> a + b);
 				line = line + "+\n";
-				System.out.println("Relativy Frequency:");
+				System.out.println("Relative Frequency:");
 			 
 				/*
 				 * Print table

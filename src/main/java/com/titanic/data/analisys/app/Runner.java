@@ -70,7 +70,7 @@ public class Runner implements CommandLineRunner {
 				 						.filter(p -> p.getSurvived() == 1)
 				 						.collect(Collectors.counting());
 					 		
-					 		return new PropertyBean("relativyFrequency", Double.valueOf(survivors) / passengers.size());
+					 		return new PropertyBean("relativeFrequency", Double.valueOf(survivors) / passengers.size());
 					 	})
 				 	).log();	 	
 		 
@@ -82,7 +82,7 @@ public class Runner implements CommandLineRunner {
 				 () -> {
 					 PassengersGroups groups = new PassengersGroups(passengersGroups);		 
 					 
-					 groups.toDo("relativyFrequency", PrinterFormats.SYSTEM_OUT_TABLE);					 
+					 groups.toDo("relativeFrequency", PrinterFormats.SYSTEM_OUT_TABLE);					 
 				 });
 		 
 		 log.info("------ END OF METHOD ------");	
